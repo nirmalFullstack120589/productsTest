@@ -1,0 +1,33 @@
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+    --primary: #ef6c00eb;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-size: 16px;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-progress-bar.progress-bar .mat-progress-bar-fill::after {
+    background-color: var(--primary);
+}
+
+.mat-card-header {
+    .mat-card-header-text {
+        margin: 0rem;
+    }
+
+    .mat-card-title-group {
+        padding-left: 0.93rem;
+        padding-top: 0.31rem;
+        display: block;
+        width: 100%;
+    }
+}

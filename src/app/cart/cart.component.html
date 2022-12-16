@@ -1,0 +1,34 @@
+<div class="cart">
+    <div class="cart-total">
+        Total amount: {{total | currency: 'USD'}}
+    </div>
+    <div class="container" [class.single-product]="cartData.length === 1" *ngIf="cartData.length; else noItemsInCart">
+        <div class="cart-data" *ngFor="let item of cartData; let i = index">
+            <mat-card class="product-card">
+                <mat-card-header>
+                    <img mat-card-sm-image src="{{item.image}}">
+                    <mat-card-title-group>
+                        <mat-card-title>{{item.title}}</mat-card-title>
+                        <div>
+                            <span class="price">{{item.price | currency: 'USD'}}</span>
+                            <span class="update-icons">
+                                <mat-icon (click)="updateCart(false, i, item)">remove</mat-icon>
+                                <span class="quantity">{{item.quantity}}</span>
+                                <mat-icon (click)="updateCart(true, i, item)">add</mat-icon>
+                                <mat-icon (click)="deleteProduct(i)">delete</mat-icon>
+                            </span>
+                        </div>
+                    </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    <p class="description" [matTooltip]="item.description" matTooltipPosition="below">
+                        {{item.description}}
+                    </p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+    </div>
+</div>
+<ng-template #noItemsInCart>
+    <p class="empty-cart">Your cart is empty!!</p>
+</ng-template>

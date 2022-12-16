@@ -1,0 +1,11 @@
+<mat-toolbar>
+    <span class="logo" routerLink="/">PRODUCT STORE</span>
+    <span class="split-header"></span>
+    <button mat-icon-button aria-label="icon-button with cart icon" routerLink="cart">
+        <ng-container *ngIf="(addedItemInCart$ | async) as cartItem">
+            <mat-icon [matBadge]="cartItem.length" [matBadgeHidden]="!(cartItem.length)" matBadgeColor="warn">
+                shopping_cart
+            </mat-icon>
+        </ng-container>
+    </button>
+</mat-toolbar>

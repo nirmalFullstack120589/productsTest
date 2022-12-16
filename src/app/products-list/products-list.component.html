@@ -1,0 +1,41 @@
+<div class="container">
+    <div *ngFor="let product of products; let i = index" class="products">
+        <mat-card class="mat-card">
+            <div class="product-img">
+                <img alt="Product Image" src="{{product.image}}">
+            </div>
+            <div class="product-info-wrapper">
+                <div class="title-wrap" [matTooltip]="product.title" matTooltipPosition="above">
+                    <h4>{{product.title}}</h4>
+                </div>
+                <div class="price-wrap">
+                    <div class="stars">
+                        <span *ngFor="let rating of [1,2,3,4,5]; let j = index">
+                            <mat-icon class="star-icon">
+                                {{(product.starRating > j) ? 'star': 'star_border'}}
+                            </mat-icon>
+                        </span>
+                    </div>
+                    <p>{{product.price | currency: 'USD'}}</p>
+                </div>
+                <div class="btn-wrap">
+                    <button *ngIf="!product.quantity; else showAddEditQty" (click)="addToCart(product)"
+                        mat-raised-button class="product-add-btn">ADD TO CART
+                        <mat-icon class="cart-icon">shopping_cart</mat-icon>
+                    </button>
+                    <ng-template #showAddEditQty>
+                        <span class="update-icons">
+                            <mat-icon (click)="updateCart(false, i, product)">remove</mat-icon>
+                            <span class="quantity">{{product.quantity}}</span>
+                            <mat-icon (click)="updateCart(true, i, product)">add</mat-icon>
+                        </span>
+                    </ng-template>
+                </div>
+            </div>
+            <mat-card-footer>
+                <mat-progress-bar class="progress-bar" *ngIf="product.isShowProgressBar"
+                    mode="indeterminate"></mat-progress-bar>
+            </mat-card-footer>
+        </mat-card>
+    </div>
+</div>
